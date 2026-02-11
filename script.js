@@ -6,7 +6,7 @@ const URL_SHEETS = "https://script.google.com/macros/s/AKfycbx3llkL4WfrDORPXElfA
 const HORARIOS_ATENCION = {
     1: { inicio: "19:00", fin: "23:59" }, // Lun
     2: { inicio: "11:00", fin: "23:59" }, // Mar
-    3: { inicio: "19:00", fin: "23:59" }, // Mie
+    3: { inicio: "11:00", fin: "23:59" }, // Mie
     4: { inicio: "19:00", fin: "23:59" }, // Jue
     5: { inicio: "19:00", fin: "01:00" }, // Vie
     6: { inicio: "19:00", fin: "01:00" }, // Sab
@@ -95,7 +95,7 @@ function renderizarProductos(data) {
                 const precio = parseFloat(p.precio) || 0;
                 productosGlobal.push({ ...p, precio, categoria: cat });
                 /* Busca esta parte dentro de la función renderizarProductos y reemplázala */
-                htmlFinal += `
+               htmlFinal += `
                     <div class="col-12 col-md-6 producto" data-categoria="${cat}">
                         <div class="card producto-card shadow-sm mb-2" onclick="verDetalle(${globalIndex})">
                             <div class="info-container">
@@ -104,10 +104,7 @@ function renderizarProductos(data) {
                                 <div class="precio text-success fw-bold">$${precio.toLocaleString('es-AR')}</div>
                             </div>
                             <div class="img-container">
-                                <img src="${p.imagen}" 
-                                    alt="${p.nombre}" 
-                                    loading="lazy"
-                                    onerror="this.onerror=null; this.src='img/logo.png'">
+                                <img src="${p.imagen}" alt="${p.nombre}" loading="lazy">
                             </div>
                         </div>
                     </div>`;
@@ -158,31 +155,7 @@ function actualizarCarrito() {
     carrito.forEach((p, i) => {
         const sub = p.precio * p.cantidad;
         total += sub; items += p.cantidad;
-        html += `
-          <div class="mb-4 border-bottom pb-3">
-                <div class="row gx-2 align-items-center">
-                    <div class="col-3">
-                        <img src="${p.imagen}" 
-                             onerror="this.onerror=null; this.src='img/logo.png'" 
-                             class="img-fluid rounded shadow-sm" 
-                             style="height:60px; width:60px; object-fit:cover;">
-                    </div>
-                    <div class="col-9"><h6 class="mb-0 fw-bold text-uppercase" style="font-size:0.85rem;">${p.nombre}</h6></div>
-                </div>
-                <div class="row gx-2 align-items-center mt-2">
-                    <div class="col-5">
-                        <div class="input-group input-group-sm border rounded" style="width:70%;">
-                            <button class="btn btn-sm" onclick="modificarCantidadCarrito(${i},-1)"><i class="bi bi-dash"></i></button>
-                            <span class="form-control text-center border-0 bg-white">${p.cantidad}</span>
-                            <button class="btn btn-sm" onclick="modificarCantidadCarrito(${i},1)"><i class="bi bi-plus"></i></button>
-                        </div>
-                    </div>
-                    <div class="col-3 text-center">
-                        <button class="btn btn-sm text-danger fw-bold p-0" style="font-size:0.65rem;" onclick="eliminarDelCarrito(${i})">ELIMINAR</button>
-                    </div>
-                    <div class="col-4 text-end"><span class="fw-bold">$${sub.toLocaleString('es-AR')}</span></div>
-                </div>
-            </div>`;
+        
     });
     if (listaModal) listaModal.innerHTML = carrito.length === 0 ? "<p class='text-center py-4'>Tu carrito está vacío 🍔</p>" : html;
     if (totalModal) totalModal.innerText = total.toLocaleString('es-AR');
