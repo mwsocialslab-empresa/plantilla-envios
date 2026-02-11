@@ -165,25 +165,69 @@ function actualizarCarrito() {
     const totalModal = document.getElementById("totalModal");
     const contadorNav = document.getElementById("contadorNav");
     let html = "", total = 0, items = 0;
+
     carrito.forEach((p, i) => {
         const sub = p.precio * p.cantidad;
-        total += sub; items += p.cantidad;
-        
+        total += sub; 
+        items += p.cantidad;
+
+        // --- 🔹 TRANSFORMADOR DE DRIVE PARA EL CARRITO ---
+        let imgCarrito = p.imagen || "";
+        if (imgCarrito.includes("drive.google.com")) {
+            const match = imgCarrito.match(/\/d\/([^/]+)/) || imgCarrito.match(/[?&]id=([^&]+)/);
+            if (match && match[1]) {
+                imgCarrito = `https://lh3.googleusercontent.com/u/0/d/${match[1]}`;
+            }
+        }
+
+        // Generamos el HTML de cada producto
+        html += `
+            <div class="mb-4 border-bottom pb-3">
+                <div class="row gx-2 align-items-center">
+                    <div class="col-3">
+                        <img src="${imgCarrito}" class="img-fluid rounded shadow-sm" style="height:60px; width:60px; object-fit:cover;">
+                    </div>
+                    <div class="col-9">
+                        <h6 class="mb-0 fw-bold text-uppercase" style="font-size:0.85rem;">${p.nombre}</h6>
+                    </div>
+                </div>
+                <div class="row gx-2 align-items-center mt-2">
+                    <div class="col-5">
+                        <div class="input-group input-group-sm border rounded" style="width:70%;">
+                            <button class="btn btn-sm" onclick="modificarCantidadCarrito(${i},-1)"><i class="bi bi-dash"></i></button>
+                            <span class="form-control text-center border-0 bg-white">${p.cantidad}</span>
+                            <button class="btn btn-sm" onclick="modificarCantidadCarrito(${i},1)"><i class="bi bi-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="col-3 text-center">
+                        <button class="btn btn-sm text-danger fw-bold p-0" style="font-size:0.65rem;" onclick="eliminarDelCarrito(${i})">ELIMINAR</button>
+                    </div>
+                    <div class="col-4 text-end">
+                        <span class="fw-bold">$${sub.toLocaleString('es-AR')}</span>
+                    </div>
+                </div>
+            </div>`;
     });
+
+    // Insertamos el HTML generado en el modal
     if (listaModal) listaModal.innerHTML = carrito.length === 0 ? "<p class='text-center py-4'>Tu carrito está vacío 🍔</p>" : html;
+    
     if (totalModal) totalModal.innerText = total.toLocaleString('es-AR');
+    
     if (contadorNav) {
         contadorNav.innerText = items;
         contadorNav.style.display = items > 0 ? "block" : "none";
     }
-    const btnFinalizar = document.querySelector('#modalCarrito .btn-success');
+
+    // Configuración del botón Finalizar
+    const btnFinalizar = document.querySelector('#modalCarrito .btn-success') || document.querySelector('#modalCarrito .btn-secondary');
     if (btnFinalizar) {
         if (!estaAbierto()) {
-            btnFinalizar.classList.replace('btn-success', 'btn-secondary');
+            btnFinalizar.className = 'btn btn-secondary w-100 py-3 fw-bold rounded-pill';
             btnFinalizar.innerHTML = 'LOCAL CERRADO 😴';
             btnFinalizar.onclick = mostrarAvisoCerrado;
         } else {
-            btnFinalizar.classList.replace('btn-secondary', 'btn-success');
+            btnFinalizar.className = 'btn btn-success w-100 py-3 fw-bold rounded-pill';
             btnFinalizar.innerHTML = 'FINALIZAR PEDIDO';
             btnFinalizar.onclick = enviarPedidoWhatsApp;
         }
