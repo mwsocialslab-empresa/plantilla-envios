@@ -94,6 +94,7 @@ function renderizarProductos(data) {
             data[cat].forEach(p => {
                 const precio = parseFloat(p.precio) || 0;
                 productosGlobal.push({ ...p, precio, categoria: cat });
+                /* Busca esta parte dentro de la función renderizarProductos y reemplázala */
                 htmlFinal += `
                     <div class="col-12 col-md-6 producto" data-categoria="${cat}">
                         <div class="card producto-card shadow-sm mb-2" onclick="verDetalle(${globalIndex})">
@@ -106,7 +107,7 @@ function renderizarProductos(data) {
                                 <img src="${p.imagen}" 
                                     alt="${p.nombre}" 
                                     loading="lazy"
-                                    onerror="this.onerror=null; this.src='https://placehold.co/150x150/212529/ffc107?text=La+Burger+Band'">
+                                    onerror="this.onerror=null; this.src='img/logo.png'">
                             </div>
                         </div>
                     </div>`;
@@ -158,9 +159,14 @@ function actualizarCarrito() {
         const sub = p.precio * p.cantidad;
         total += sub; items += p.cantidad;
         html += `
-            <div class="mb-4 border-bottom pb-3">
+          <div class="mb-4 border-bottom pb-3">
                 <div class="row gx-2 align-items-center">
-                    <div class="col-3"><img src="${p.imagen}" class="img-fluid rounded shadow-sm" style="height:60px; object-fit:cover;"></div>
+                    <div class="col-3">
+                        <img src="${p.imagen}" 
+                             onerror="this.onerror=null; this.src='img/logo.png'" 
+                             class="img-fluid rounded shadow-sm" 
+                             style="height:60px; width:60px; object-fit:cover;">
+                    </div>
                     <div class="col-9"><h6 class="mb-0 fw-bold text-uppercase" style="font-size:0.85rem;">${p.nombre}</h6></div>
                 </div>
                 <div class="row gx-2 align-items-center mt-2">
