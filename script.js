@@ -81,7 +81,6 @@ function cargarDesdeSheets() {
             if (cont) cont.innerHTML = "<p class='text-center text-danger'>Error al conectar con el menú.</p>";
         });
 }
-
 function renderizarProductos(data) {
     const contenedor = document.getElementById("productos");
     if (!contenedor) return;
@@ -89,13 +88,26 @@ function renderizarProductos(data) {
     let globalIndex = 0;
     productosGlobal = [];
     const categorias = ["hamburguesas", "papas", "bebidas", "promos"];
+    
     categorias.forEach(cat => {
         if (data[cat]?.length > 0) {
             data[cat].forEach(p => {
                 const precio = parseFloat(p.precio) || 0;
-                productosGlobal.push({ ...p, precio, categoria: cat });
-                /* Busca esta parte dentro de la función renderizarProductos y reemplázala */
-               htmlFinal += `
+
+                // --- 🔹 TRANSFORMADOR DE LINKS DE DRIVE ---
+                let imgURL = p.imagen || "";
+                if (imgURL.includes("drive.google.com")) {
+                    // Extrae el ID del archivo (funciona con links /file/d/... o ?id=...)
+                    const match = imgURL.match(/\/d\/([^/]+)/) || imgURL.match(/[?&]id=([^&]+)/);
+                    if (match && match[1]) {
+                        imgURL = `https://lh3.googleusercontent.com/u/0/d/${match[1]}`;
+                    }
+                }
+                // ------------------------------------------
+
+                productosGlobal.push({ ...p, precio, imagen: imgURL, categoria: cat });
+
+                htmlFinal += `
                     <div class="col-12 col-md-6 producto" data-categoria="${cat}">
                         <div class="card producto-card shadow-sm mb-2" onclick="verDetalle(${globalIndex})">
                             <div class="info-container">
@@ -104,7 +116,7 @@ function renderizarProductos(data) {
                                 <div class="precio text-success fw-bold">$${precio.toLocaleString('es-AR')}</div>
                             </div>
                             <div class="img-container">
-                                <img src="${p.imagen}" alt="${p.nombre}" loading="lazy">
+                                <img src="${imgURL}" alt="${p.nombre}" loading="lazy">
                             </div>
                         </div>
                     </div>`;
@@ -114,6 +126,7 @@ function renderizarProductos(data) {
     });
     contenedor.innerHTML = htmlFinal || "<p class='text-center'>No hay productos disponibles.</p>";
 }
+
 
 function verDetalle(index) {
     const p = productosGlobal[index];
