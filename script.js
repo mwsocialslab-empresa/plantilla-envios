@@ -103,7 +103,10 @@ function renderizarProductos(data) {
                                 <div class="precio text-success fw-bold">$${precio.toLocaleString('es-AR')}</div>
                             </div>
                             <div class="img-container">
-                                <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='https://via.placeholder.com/150?text=La+Reco'">
+                                <img src="${p.imagen}" 
+                                    alt="${p.nombre}" 
+                                    loading="lazy"
+                                    onerror="this.onerror=null; this.src='https://placehold.co/150x150/212529/ffc107?text=La+Burger+Band'">
                             </div>
                         </div>
                     </div>`;
