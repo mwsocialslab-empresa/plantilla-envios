@@ -269,9 +269,37 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="script.js"></script>
+<script src="script.js">
+    
+     type="text/javascript">
+  // Función para cargar Calendly con retraso para no ralentizar el móvil
+  function cargarCalendly() {
+    var script = document.createElement('script');
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    script.async = true;
+    script.onload = function() {
+      Calendly.initBadgeWidget({
+        url: 'https://calendly.com/mwsocialslab/30min?hide_event_type_details=1&text_color=ffc107&primary_color=363633',
+        text: 'RESERVAR MESA 🍔',
+        color: '#212529', // Fondo oscuro como tu footer
+        textColor: '#ffc107', // Amarillo warning de tu marca
+        branding: false // Quita el "powered by" si tienes plan pago
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  // Se activa 3 segundos después de que la página sea interactiva
+  if (window.addEventListener) {
+    window.addEventListener('load', function() {
+      setTimeout(cargarCalendly, 3000); 
+    });
+  }
+
+    
+</script>
 <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-<script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/mwsocialslab/30min', text: 'Schedule time with me', color: '#363633', textColor: '#ffc107', branding: true }); }</script>
+<script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/mwsocialslab/30min', text: 'Reserva', color: '#363633', textColor: '#ffc107', branding: true }); }</script>
 <!-- Calendly badge widget end -->
 </body>
 </html>
