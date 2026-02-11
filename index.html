@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>LA BURGER BAND</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="main-header bg-dark overflow-hidden py-2">
+    <div class="marquesina-wrapper">
+        <div class="marquesina-content">
+            <span>🍔 ¡ENVÍOS RÁPIDOS EN TODA LA ZONA! &nbsp;&nbsp;</span>
+            <span>🍔 ¡ENVÍOS RÁPIDOS EN TODA LA ZONA! &nbsp;&nbsp;</span>
+            <span>🍔 ¡ENVÍOS RÁPIDOS EN TODA LA ZONA! &nbsp;&nbsp;</span>
+            <span>🍔 ¡ENVÍOS RÁPIDOS EN TODA LA ZONA! &nbsp;&nbsp;</span>
+            <span>🍔 ¡ENVÍOS RÁPIDOS EN TODA LA ZONA! &nbsp;&nbsp;</span>
+          
+        </div>
+        <div class="marquesina-content">
+            <span>🍔 ¡ENVÍOS RÁPIDOS EN TODA LA ZONA! &nbsp;&nbsp;</span>
+            <span>🍔 ¡ENVÍOS RÁPIDOS EN TODA LA ZONA! &nbsp;&nbsp;</span>
+            <span>🍔 ¡ENVÍOS RÁPIDOS EN TODA LA ZONA! &nbsp;&nbsp;</span>
+            <span>🍔 ¡ENVÍOS RÁPIDOS EN TODA LA ZONA! &nbsp;&nbsp;</span>
+            <span>🍔 ¡ENVÍOS RÁPIDOS EN TODA LA ZONA! &nbsp;&nbsp;</span>
+           
+        </div>
+    </div>
+</header>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm py-2">
+    <div class="container">
+       <a class="navbar-brand d-flex align-items-center" href="#" onclick="volverAlCatalogo(); return false;">
+            <img src="img/logo.png" alt="La Reco Logo" class="me-2" style="width: 40px;">
+            <span class="fw-bold text-dark">LA BURGERS BAND</span>
+        </a>
+
+        <div class="d-flex order-lg-last ms-2">
+            <button class="btn btn-cart-nav position-relative" onclick="intentarAbrirCarrito()">
+                <span class="fs-4"><i class="bi bi-truck"></i></span>
+                <span id="contadorNav" class="badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle" style="display:none">0</span>
+            </button>
+            <button class="navbar-toggler border-0 ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+
+        <div class="collapse navbar-collapse" id="menuNav">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a href="javascript:void(0)" class="nav-link px-3" onclick="filtrar('todos')">MENÚ</a></li>
+                <li class="nav-item"><a href="javascript:void(0)" class="nav-link px-3" onclick="filtrar('hamburguesas')">HAMBURGUESAS</a></li>
+                <li class="nav-item"><a href="javascript:void(0)" class="nav-link px-3" onclick="filtrar('papas')">PAPAS FRITAS</a></li>
+                <li class="nav-item"><a href="javascript:void(0)" class="nav-link px-3" onclick="filtrar('bebidas')">BEBIDAS</a></li>
+                <li class="nav-item"><a href="javascript:void(0)" class="nav-link px-3 text-danger fw-bold" onclick="filtrar('promos')">PROMOS 🔥</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section id="hero">
+    <div id="carouselHero" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200" class="d-block w-100 hero-img" alt="Promo 1">
+                <div class="carousel-caption">
+                    <h2 class="display-6 fw-bold">LAS MEJORES SMASH</h2>
+                    <p>Sabor real en cada bocado.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=1200" class="d-block w-100 hero-img" alt="Promo 2">
+                <div class="carousel-caption">
+                    <h2 class="display-6 fw-bold">PROMO DEL MES</h2>
+                    <p>Doble Cheese + Papas Regular.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="accordion accordion-flush mb-3" id="accordionHorarios">
+  <div class="accordion-item bg-dark border-secondary">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed bg-dark text-warning fw-bold justify-content-center" type="button" data-bs-toggle="collapse" data-bs-target="#flush-horarios" aria-expanded="false" aria-controls="flush-horarios">
+        <div class="text-center">
+             <i class="bi bi-clock-history me-2"></i> 
+             VER DÍAS Y HORARIOS DE ATENCIÓN
+        </div>
+      </button>
+    </h2>
+    <div id="flush-horarios" class="accordion-collapse collapse" data-bs-parent="#accordionHorarios">
+      <div class="accordion-body text-white">
+        <table class="table table-sm table-dark table-borderless mb-0">
+          <tbody>
+            <tr>
+              <td>Lunes a Jueves</td>
+              <td class="text-end text-warning">19:00 a 00:00</td>
+            </tr>
+            <tr>
+              <td>Viernes y Sábados</td>
+              <td class="text-end text-warning">19:00 a 01:00</td>
+            </tr>
+            <tr>
+              <td>Domingos</td>
+              <td class="text-end text-warning">19:00 a 00:00</td>
+            </tr>
+          </tbody>
+        </table>
+        <hr class="my-2 border-secondary">
+        <p class="small mb-0 text-center text-muted">
+            * Sujeto a cambios en días feriados.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="container my-4" id="productos-section" style="scroll-margin-top: 100px;">
+    <div class="mb-4">
+        <div class="input-group shadow-sm rounded-3 overflow-hidden">
+            <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
+            <input type="text" id="buscador" class="form-control border-start-0 py-3" placeholder="Buscar productos..." onkeyup="buscarProducto()">
+        </div>
+    </div>
+    
+    <div id="contenedor-catalogo">
+        <div id="productos" class="row g-3">
+            <div class="text-center py-5">
+                <div class="spinner-border text-warning" role="status"></div>
+                <p class="mt-2 text-muted">Preparando la cocina...</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<section id="vista-detalle" class="container my-4 d-none">
+    <nav aria-label="breadcrumb" class="mb-4">
+        <button class="btn btn-link text-dark p-0 text-decoration-none fw-bold" onclick="volverAlCatalogo()">
+            <i class="bi bi-arrow-left"></i> VOLVER AL MENÚ
+        </button>
+    </nav>
+
+    <div class="row gx-lg-5">
+        <div class="col-12 col-md-6 mb-4">
+            <div class="contenedor-zoom shadow-sm rounded-4 overflow-hidden">
+                <img id="detalle-img" src="" alt="Producto" class="img-fluid">
+            </div>
+        </div>
+        <div class="col-12 col-md-6 mb-4">
+            <div class="p-4 bg-white rounded-4 shadow-sm border">
+                <h2 id="detalle-nombre" class="fw-bold mb-2"></h2>
+                <div id="detalle-precio" class="display-6 fw-bold text-success mb-4"></div>
+                
+                
+                 <div class="pt-4 mt-4 border-top mb-4"> <h5 class="fw-bold text-uppercase small mb-3">Descripción</h5>
+                    <p id="detalle-descripcion" class="text-muted"></p>
+                </div>
+                <div class="mb-4">
+                    <label class="d-block fw-bold text-uppercase small mb-2 text-muted">Cantidad</label>
+                    <div class="input-group input-group-lg w-50 shadow-sm rounded"> 
+                        <button class="btn btn-outline-dark" onclick="cambiarCantidadDetalle(-1)">-</button>
+                        <input id="cant-detalle" type="text" class="form-control text-center bg-white border-dark" value="1" readonly>
+                        <button class="btn btn-outline-dark" onclick="cambiarCantidadDetalle(1)">+</button>
+                    </div>
+                </div>
+
+                <button id="btn-agregar-detalle" class="btn btn-dark w-100 py-3 fw-bold rounded-pill shadow d-flex align-items-center justify-content-center gap-2">
+                    AÑADIR AL PEDIDO <i class="bi bi-cart4"></i>
+                </button>
+
+               
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="modalCarrito" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow-lg rounded-4">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title fw-bold">Mi Pedido <i class="bi bi-truck"></i></h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="listaModal" class="mb-4 scroll-carrito"></div>
+
+                <div class="p-3 bg-light rounded-3 mb-4 border">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted fw-bold">TOTAL:</span>
+                        <h4 class="mb-0 text-success fw-bold">$<span id="totalModal">0</span></h4>
+                    </div>
+                </div>
+
+                <div class="form-envio">
+                    <h6 class="fw-bold mb-3 text-uppercase small border-bottom pb-2">Datos de Entrega</h6>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label small fw-bold">Tu Nombre</label>
+                            <input type="text" id="nombreCliente" class="form-control" placeholder="Ej: Juan Pérez">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label small fw-bold">WhatsApp</label>
+                           <input type="tel" 
+                            id="telefonoCliente" 
+                            class="form-control" 
+                            placeholder="Ej: 1122334455"
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label small fw-bold">Dirección y Localidad</label>
+                        <input type="text" id="direccionModal" class="form-control" placeholder="Calle 123, Depto 4B">
+                    </div>
+                </div>
+
+                <button class="btn btn-success w-100 py-3 fw-bold rounded-pill d-flex align-items-center justify-content-center gap-2 shadow" onclick="enviarPedidoWhatsApp()">
+                    PEDIR POR WHATSAPP <i class="bi bi-whatsapp"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="bg-dark text-white py-5 mt-5">
+    <div class="container text-center">
+        <h4 class="fw-bold mb-2">LA BURGER BAND</h4>
+        <img src="img/logo.png" alt="Logo" width="100" height="100" class=" ">
+        <p class="text-warning small mb-4">El sabor de las mejores smash burgers.</p>
+        <div class="mb-4">
+            <a href="#" class="text-white mx-3 fs-5"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="text-white mx-3 fs-5"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-white mx-3 fs-5"><i class="bi bi-whatsapp"></i></a>
+        </div>
+        <hr class="opacity-25">
+        <p class="small opacity-50 mb-0">&copy; 2026 LA BURGER BAND. Todos los derechos reservados.</p>
+        <a href="https://cele403938484.my.canva.site/nuestra-estrategia-tus-ideas-convertidos-en-marca?fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGn5imOVgBf7HVqw-vAg8FeHs18j7umEObpKpHPG-ZdBtcZbU6vCUl9S0mR_bU_aem_P1QEbSXUolE0eaY6iZrPyA" class="text-white mx-3 fs-5">Craedo por: MWsacials</a>
+    </div>
+</footer>
+<div class="modal fade" id="modalCerrado" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-dark text-white border-warning">
+      <div class="modal-header border-secondary">
+        <h5 class="modal-title text-warning">🍔 LA BURGER BAND</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center py-4">
+        <h4 class="mb-3">¡Estamos descansando!</h4>
+        <p>En este momento La Reco Burgers no está tomando pedidos.</p>
+        <div class="bg-secondary bg-opacity-25 rounded p-3 mt-3">
+            <h6 class="text-warning fw-bold mb-2">Nuestros horarios son:</h6>
+            <p class="mb-1">Lun a Jue: 19:00 a 00:00</p>
+            <p class="mb-1">Vie y Sáb: 19:00 a 01:00</p>
+            <p class="mb-0">Dom: 19:00 a 00:00</p>
+        </div>
+      </div>
+      <div class="modal-footer border-0 justify-content-center">
+        <button type="button" class="btn btn-warning fw-bold px-4" data-bs-dismiss="modal">ENTENDIDO</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

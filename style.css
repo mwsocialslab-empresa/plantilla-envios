@@ -1,0 +1,341 @@
+/* =========================================
+   1. CONFIGURACIÓN GENERAL Y FUENTES
+   ========================================= */
+* { 
+    font-family: 'Roboto Condensed', sans-serif !important; 
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #fcfcfc; /* Fondo un poco más limpio para comida */
+    color: #222;
+    transition: overflow 0.3s;
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+/* 1. Eliminamos el desborde horizontal en el cuerpo del modal */
+.modal-body {
+    overflow-x: hidden !important;
+}
+
+/* 2. Ajustamos el contenedor de la lista para que no genere scroll */
+#listaModal {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* 3. Si el scroll persiste, puede ser por los márgenes de las filas */
+#listaModal .row {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+/* =========================================
+   2. HEADER Y NAV
+   ========================================= */
+.navbar {
+    z-index: 1050 !important;
+}
+
+.marca { 
+    letter-spacing: -0.5px; 
+    font-weight: 800; 
+    color: #000;
+}
+
+.rounded-circle {
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    border: 2px solid #eee;
+}
+
+/* Ajuste móvil para el logo */
+@media (max-width: 768px) {
+    .navbar-brand img {
+        width: 50px !important;
+        height: 50px !important;
+    }
+    .marca { font-size: 1.2rem !important; }
+}
+
+/* =========================================
+   3. HERO / CARRUSEL
+   ========================================= */
+.hero-img {
+    height: 45vh;
+    object-fit: cover;
+    filter: brightness(0.7);
+}
+
+.carousel-caption {
+    bottom: 25%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .hero-img { height: 30vh; }
+    .carousel-caption h2 { font-size: 1.5rem; }
+}
+
+/* =========================================
+   4. TARJETAS DE PRODUCTO (ESTILO MENÚ LISTA)
+   ========================================= */
+.producto-card {
+    display: flex !important;
+    flex-direction: row !important; /* Imagen a la derecha */
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border-radius: 12px;
+    background: #fff;
+    border: 1px solid #eee !important;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-height: 120px;
+}
+
+.producto-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
+    transform: translateY(-2px);
+}
+
+
+.info-container {
+    flex: 1;
+    padding-right: 15px;
+}
+
+.info-container h6 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #1a1a1a;
+}
+
+.descripcion-corta {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.precio {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #28a745; /* Verde gastronómico */
+    margin-top: 5px;
+}
+
+.img-container {
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0;
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* =========================================
+   5. CARRITO Y ELEMENTOS INTERACTIVOS
+   ========================================= */
+.img-mini-carrito {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Selector de cantidad sutil */
+.wrapper-cantidad-carrito {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    height: 32px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.btn-qty {
+    background: #f8f9fa;
+    color: #333;
+    border: none;
+    width: 30px;
+    height: 100%;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.btn-qty:hover { background: #e9ecef; }
+
+.qty-num {
+    padding: 0 10px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    min-width: 35px;
+    text-align: center;
+}
+
+/* =========================================
+   6. VISTA DETALLE
+   ========================================= */
+.contenedor-zoom {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #fff;
+}
+
+.contenedor-zoom img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.btn-talle-selector {
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.btn-talle-selector.active {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+}
+
+/* =========================================
+   7. COMPONENTES Y VALIDACIONES
+   ========================================= */
+.custom-toast {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #222;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 50px;
+    z-index: 11000;
+    transition: all 0.4s ease;
+    opacity: 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.custom-toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.is-invalid-custom {
+    border: 2px solid #dc3545 !important;
+    background-color: #fff8f8 !important;
+}
+
+/* Evitar scroll horizontal */
+#modalCarrito .modal-body {
+    overflow-x: hidden !important;
+}
+
+.scroll-carrito {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Estilo para el buscador */
+#buscador:focus {
+    border-color: #ffc107; /* Color hamburguesería */
+    box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+}
+button {
+    touch-action: manipulation;
+}
+.card-img-top {
+    width: 100%;
+    height: 200px; /* O el tamaño que prefieras */
+    object-fit: cover; /* Esto las recorta automáticamente al mismo tamaño */
+}
+/* Elimina el desborde en el carrito */
+#listaModal .row {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+#listaModal {
+    overflow-x: hidden !important; /* Evita que aparezca la barra gris de abajo */
+}
+/* Solo para pantallas menores a 768px (móviles) */
+@media (max-width: 767.98px) {
+    #productos .producto {
+        padding-left: 4px;  /* Reduce espacio lateral */
+        padding-right: 4px; /* Reduce espacio lateral */
+    }
+
+    .producto-card {
+        margin-bottom: 0.1rem !important; /* Reduce espacio hacia abajo */
+    }
+}
+.marquesina-wrapper {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    background: #212529; /* bg-dark */
+    padding: 10px 0;
+}
+
+.marquesina-content {
+    display: flex;
+    white-space: nowrap;
+    flex-shrink: 0; /* Evita que el bloque se encoja */
+    animation: scroll-infinito 15s linear infinite;
+}
+
+.marquesina-content span {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #ffc107;
+    padding-right: 50px; /* Espacio entre frases */
+    display: inline-block;
+}
+
+@keyframes scroll-infinito {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Pausar al pasar el mouse (opcional, por si alguien quiere leer) */
+.marquesina-wrapper:hover .marquesina-content {
+    animation-play-state: paused;
+}
+/* Centra el texto y quita el icono por defecto o acomódalo */
+#accordionHorarios .accordion-button {
+    text-align: center;
+}
+
+/* Esto quita el icono que viene por defecto a la derecha si prefieres usar el tuyo */
+/* O puedes dejarlo, ya que por defecto Bootstrap usa una flecha que gira */
+#accordionHorarios .accordion-button::after {
+    margin-left: 15px; /* Espacio entre el texto y la flecha */
+    margin-right: 0;
+}
+
+/* Si quieres que la flecha sea naranja como tu texto */
+#accordionHorarios .accordion-button::after {
+    filter: invert(78%) sepia(64%) saturate(541%) hue-rotate(354deg) brightness(101%) contrast(101%);
+}
