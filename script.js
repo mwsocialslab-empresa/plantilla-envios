@@ -260,7 +260,7 @@ async function enviarPedidoWhatsApp() {
     msg +=`🤝 *MERCADO PAGO:*\n`;
     msg +=`📲 *TOCÁ EN "INICIAR SESIÓN"*\n`;
     msg +=`👇 App: ${linkApp}\n`;
-    msg +=`👉 Alias: *walter30mp*\n`;
+    msg +=`👉 Alias: *Alias-Ejemplo*\n`;
     msg +=`😎 *No olvides mandar el comprobante de pago*\n\n`;
     msg +=`🙏 ¡Muchas gracias!`;
 
