@@ -338,7 +338,7 @@ button {
     width: 100%;
     overflow: hidden;
     background: #212529; /* bg-dark */
-    padding: 10px 0;
+    padding: 4px 0px;
 }
 
 .marquesina-content {
