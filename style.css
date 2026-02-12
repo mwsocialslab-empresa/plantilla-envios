@@ -345,7 +345,7 @@ button {
     display: flex;
     white-space: nowrap;
     flex-shrink: 0; /* Evita que el bloque se encoja */
-    animation: scroll-infinito 15s linear infinite;
+    animation: scroll-infinito 40s linear infinite;
 }
 
 .marquesina-content span {
