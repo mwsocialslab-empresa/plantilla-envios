@@ -1,7 +1,7 @@
 /* ==========================================
    🔹 CONFIGURACIÓN GLOBAL Y ESTADO
    ========================================== */
-const URL_SHEETS = "https://script.google.com/macros/s/AKfycbx3llkL4WfrDORPXElfA6uv7-WGfkkB68uMpXaeJ0mDaekVKRcKxzsCTo_LZvols_tN/exec";
+const URL_SHEETS = "https://script.google.com/macros/s/AKfycbxa_Bw9EcxhyvYXIWaC33tTO6krX22ujl26y2Ux-Xbrqe3TpcV3Ja0A7TLHb8j4LSoniQ/exec";
 
 const HORARIOS_ATENCION = {
     1: { inicio: "19:00", fin: "23:59" }, // Lun
