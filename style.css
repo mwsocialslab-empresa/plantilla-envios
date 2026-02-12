@@ -61,29 +61,67 @@ body.menu-open {
 }
 
 /* =========================================
-   3. HERO / CARRUSEL
+   3. HERO / CARRUSEL (CORREGIDO)
    ========================================= */
-.hero-img {
-    width: 100%;
-    height: 350px;     /* Altura fija para que no salte el diseño */
-    object-fit: cover; /* Recorta la foto para que llene el espacio sin estirarse */
-    object-position: center; /* Centra la parte importante de la foto */
+#hero {
+    margin: 0;
+    padding: 0;
+    line-height: 0; /* Elimina micro-espacios de elementos inline-block */
 }
 
 #carouselHero {
-    min-height: 300px;
-}
-.carousel-caption {
-    bottom: 25%;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(5px);
-    border-radius: 20px;
-    padding: 20px;
+    /* Eliminamos el min-height fijo para que el contenedor se adapte a la imagen */
+    min-height: auto; 
+    margin-bottom: 0 !important;
 }
 
+.hero-img {
+    width: 100%;
+    height: 50vh;      /* Reducido un poco para que se vea el inicio de la siguiente sección */
+    object-fit: cover;
+    object-position: center;
+    display: block;    /* Crucial para quitar el espacio inferior */
+}
+
+.carousel-caption {
+    bottom: 15%;       /* Bajado un poco para que no tape el centro de la hamburguesa */
+    background: rgba(0, 0, 0, 0.6); /* Un poco más oscuro para mejor legibilidad */
+    backdrop-filter: blur(8px);
+    border-radius: 15px;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Toque sutil de brillo */
+    margin: 0 10px;    /* Evita que en móviles toque los bordes */
+}
+
+/* --- AJUSTES PARA MÓVILES --- */
 @media (max-width: 768px) {
-    .hero-img { height: 30vh; }
-    .carousel-caption h2 { font-size: 1.5rem; }
+    .hero-img { 
+        height: 35vh;  /* Ajustado para que no sea tan pequeño */
+    }
+    
+    .carousel-caption {
+        bottom: 10%;
+        padding: 10px;
+    }
+
+    .carousel-caption h2 { 
+        font-size: 1.3rem; 
+        margin-bottom: 5px;
+    }
+
+    .carousel-caption p {
+        font-size: 0.9rem;
+        margin-bottom: 0;
+    }
+}
+
+/* --- ELIMINAR ESPACIO EN ACORDEÓN --- */
+#accordionHorarios {
+    margin-top: 0 !important;
+}
+
+#accordionHorarios .accordion-button {
+    border-radius: 0 !important; /* Asegura que pegue perfecto con el Hero */
 }
 
 /* =========================================
